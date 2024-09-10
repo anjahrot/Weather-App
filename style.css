@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header header" "search-location weather-report" "footer footer";
+    font-family: 'roboto', Arial, Helvetica, sans-serif;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Header */
+.site-header {
+    grid-area: header;
+    text-align: center;
+    font-size: 48px;
+    background-color: rgb(38, 226, 163);
+    padding: 20px;
+}
+
+/* Search location */
+.search-location {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+}
+
+.search-location p {
+    font-size: 26px;
+}
+
+.currentLocation {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form input {
+    min-width: 60%;
+    height: 45px; 
+    padding: 5px;
+    border: 1px solid black;
+    font-size: 20px;
+    font-family: inherit;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#submitBtn {
+    min-width: 10%;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#submitBtn:hover {
+    background-color: rgb(193, 195, 196);
+}
+
+/* Weather-report */
+.weather-report {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 30px 0;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr auto;
+    grid-template-areas: "header header" "icon temp" "precip wind" "nextDays nextDays";
+}
+
+.weather-report h4 {
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.report-header {
+    grid-area: header;
+    justify-self: start;
+    align-self: center;
+}
+
+.icon, .temp, .precip, .wind {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+#icon {
+    width: 84px;
+    height: auto;
+}
+
+.measurement {
+    display: flex;
+    font-size: 28px;
+}
+
+#toggleTemp {
+    margin-top: 10px;
+    padding: 4px 10px;
+}
+
+.nextDays {
+    padding: 30px 0;
+    grid-area: nextDays;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nextDays p {
+    padding: 0px 35px;
+}
+
+/* Footer */
+.footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(38, 226, 163);
+    padding: 20px;
+    color: darkblue;
+}
+
+.icons {
+    display: flex;
+    gap: 5px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: darkblue;
+}

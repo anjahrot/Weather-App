@@ -7,11 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
     <div class="container">
-        <p>Search place: </p>
-        <form action="/action_page.php">
-            <input id="keyword" type="text" name="search" placeholder="Type in location...">
-            <button id="submitBtn" type="submit">Search!</button>
-        </form>
+        <div class="site-header">Weather App</div>
+        <div class="search-location">
+            <div class="currentLocation">
+                <img src="Icons/globe.png" alt="globe">
+                <p id="adress"></p>
+            </div>
+            <div class="form">
+                <p>What is your location? </p>
+                <form action="/action_page.php">
+                    <input id="keyword" type="text" name="search" placeholder="Type in location...">
+                    <button id="submitBtn" type="submit"><img src="Icons/search.png" alt="searchglas"></button>
+                </form>
+            </div>
+        </div>
+        <div class="weather-report">
+            <div class="report-header">
+                <h4>Current conditions: </h4>
+            </div>
+            <div class="icon">
+                <img id="icon" src="#" alt="icon-weather">
+                <p id="description"></p>
+            </div>
+            <div class="temp">
+                <div class="measurement">
+                    <img src="Icons/thermometer.png" alt="thermometer">
+                    <p id="temp"></p>
+                </div>
+                <button id="toggleTemp">F/C</button>
+            </div>
+            <div class="precip">
+                <img src="Icons/umbrella.png" alt="umbrella">
+                <p id="precip"></p>
+            </div>
+            <div class="wind">
+                <img src="Icons/wind.png" alt="wind">
+                <p id="wind"></p>
+            </div>
+            <div class="nextDays">
+                <h4>Weatherforecast week ahead: </h4>
+                <p id='nextDescription'></p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Weather data powered by <a href="https://www.visualcrossing.com/">Visual Crossing</a></p>
+            <div class="icons">
+                <p><a href="https://www.flaticon.com/free-icons/temperature" title="temperature icons">Temperature icons created by Freepik - Flaticon</a></p>
+                <p><a href="https://www.flaticon.com/free-icons/umbrella" title="umbrella icons">Umbrella icons created by Freepik - Flaticon</a></p>
+                <p><a href="https://www.flaticon.com/free-icons/wind" title="wind icons">Wind icons created by Vitaly Gorbachev - Flaticon</a></p>
+                <p><a href="https://www.flaticon.com/free-icons/globe" title="globe icons">Globe icons created by srip - Flaticon</a></p>
+            </div>
+        </div>
     </div>
 <body>
     <script src="data.js"></script>
