@@ -13,20 +13,29 @@ async function getData(urlString) {
             throw new Error(`Response status: ${response.status}`);
             }
         const data = await response.json();
+
         //Retrieving only necessary information
         const adress = data.resolvedAddress;
+        const timezone = data.timezone;
         const current = [
             data.currentConditions.conditions, 
             data.currentConditions.icon, 
             data.currentConditions.temp, 
             data.currentConditions.precip,
-            data.currentConditions.windspeed
+            data.currentConditions.windspeed,
+            data.currentConditions.datetime
         ];
         const nextDescription = data.description;
-        return {adress, current, nextDescription};
+        return {adress, timezone, current, nextDescription};
         }catch(error){
-            console.log(`Fetch error: `, error);
-                    alert(error);
+            if (error.message.includes('401')){
+                alert('API key invalid');
+            } else if(error.message.includes('400')){
+                alert('Location not found!')
+            } else {
+                console.log(`Fetch error: `, error);
+                alert(error);
+            }
         }
     }
 
@@ -41,17 +50,22 @@ submitBtn.addEventListener('click', (e) => {
 
 async function renderWeatherReport(location) {
     const data = await getWeatherData(location);
-    console.log(data);
+    
     const currentAdress = document.querySelector('#adress');
     currentAdress.textContent = data.adress;
 
+    const time = document.querySelector('#timeStamp');
+    time.textContent = data.timezone + ' ' + data.current[5];
+
     const weatherIcon = document.querySelector('#icon');
     const weatherDescription = document.querySelector('#description');
-    weatherIcon.src = 'Icons/'+ data.current[1] + '.png';
+    weatherIcon.src = 'Icons/'+ data.current[1] + '.svg';
     weatherDescription.textContent = data.current[0];
 
     const temp = document.querySelector('#temp');
-    temp.textContent = data.current[2] + ' C';
+    const tempunit = document.querySelector('#tempUnit');
+    temp.textContent = data.current[2];
+    tempunit.textContent = ' \u00B0C';
 
     const precip = document.querySelector('#precip');
     precip.textContent = data.current[3] + ' mm';
@@ -63,6 +77,39 @@ async function renderWeatherReport(location) {
     nextDays.textContent = data.nextDescription;
 
 } 
+
+const toggleBtn = document.querySelector('#toggleTemp');
+toggleBtn.addEventListener('click', toggleTemp);
+
+const temp = document.querySelector('#temp');
+const tempunit = document.querySelector('#tempUnit');
+//initially rendered temperature in celsius
+let tempType = 'celsius';
+
+function toggleTemp () {
+    let temperature = parseFloat(temp.textContent)
+    if(tempType === 'celsius') {
+        temp.textContent = tempFromCtoF(temperature);
+        tempunit.textContent = ' \u00B0F';
+        tempType = 'fahrenheit';
+    }
+    else if(tempType === 'fahrenheit') {
+        temp.textContent = tempFromFtoC(temperature);
+        tempunit.textContent = ' \u00B0C';
+        tempType = 'celsius';
+    }
+}
+
+//Takes in temp i celsius and returns temp in fahrenheit with one decimal as string
+function tempFromCtoF (temp) {
+    const tempF =  temp*(9/5) + 32;
+    return tempF.toFixed(1);
+}
+
+function tempFromFtoC (temp) {
+    const tempC = (temp - 32)*(5/9);
+    return tempC.toFixed(1);
+}
 
 //Initial render
 renderWeatherReport('Volda');

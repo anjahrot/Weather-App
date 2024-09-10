@@ -23,7 +23,8 @@
         </div>
         <div class="weather-report">
             <div class="report-header">
-                <h4>Current conditions: </h4>
+                <h4>Current conditions</h4>
+                <p id="timeStamp"></p>
             </div>
             <div class="icon">
                 <img id="icon" src="#" alt="icon-weather">
@@ -33,8 +34,12 @@
                 <div class="measurement">
                     <img src="Icons/thermometer.png" alt="thermometer">
                     <p id="temp"></p>
+                    <p id="tempUnit"></p>
                 </div>
-                <button id="toggleTemp">F/C</button>
+                <button id="toggleTemp">
+                    <img src="Icons/celsius.png" alt="togglecelsius">
+                    <img src="Icons/fahrenheit.png" alt="togglefahrenheit">
+                </button>
             </div>
             <div class="precip">
                 <img src="Icons/umbrella.png" alt="umbrella">
@@ -45,15 +50,14 @@
                 <p id="wind"></p>
             </div>
             <div class="nextDays">
-                <h4>Weatherforecast week ahead: </h4>
+                <h4>Weatherforecast week ahead</h4>
                 <p id='nextDescription'></p>
             </div>
         </div>
         <div class="footer">
             <p>Weather data powered by <a href="https://www.visualcrossing.com/">Visual Crossing</a></p>
             <div class="icons">
-                <p><a href="https://www.flaticon.com/free-icons/temperature" title="temperature icons">Temperature icons created by Freepik - Flaticon</a></p>
-                <p><a href="https://www.flaticon.com/free-icons/umbrella" title="umbrella icons">Umbrella icons created by Freepik - Flaticon</a></p>
+                <p><a href="https://www.flaticon.com/free-icons/temperature" title="icons">Temperature&umbrella icons created by Freepik - Flaticon</a></p>
                 <p><a href="https://www.flaticon.com/free-icons/wind" title="wind icons">Wind icons created by Vitaly Gorbachev - Flaticon</a></p>
                 <p><a href="https://www.flaticon.com/free-icons/globe" title="globe icons">Globe icons created by srip - Flaticon</a></p>
             </div>
