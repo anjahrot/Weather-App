@@ -9,7 +9,7 @@
     display: grid;
     gap: 20px;
     justify-items: start;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "header header" "search-location weather-report" "footer footer";
     font-family: 'roboto', Arial, Helvetica, sans-serif;
