@@ -82,18 +82,17 @@ form {
 /* Weather-report */
 .weather-report {
     display: grid;
-    justify-items: center;
     align-items: center;
     background-color: aqua;
     border: 1px solid black;
     border-radius: 10px;
     padding: 30px;
-    max-width: 80%;
+    max-width: 100%;
     margin: 30px;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 2fr 1fr 2fr;
-    grid-template-areas: "header header" "icon temp" "precip wind" "nextDays nextDays";
+    grid-template-rows: auto 2fr 1fr 2fr 1fr;
+    grid-template-areas: "header header" "icon temp" "precip wind" "nextDays nextDays" "nextDaysItems nextDaysItems";
 }
 
 .weather-report h4 {
@@ -164,6 +163,13 @@ form {
 
 .nextDays p {
     padding: 0px 45px;
+}
+
+.nextDaysWeather {
+    grid-area: nextDaysItems;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 /* Footer */

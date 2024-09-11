@@ -13,7 +13,6 @@ async function getData(urlString) {
             throw new Error(`Response status: ${response.status}`);
             }
         const data = await response.json();
-
         //Retrieving only necessary information
         const adress = data.resolvedAddress;
         const timezone = data.timezone;
@@ -26,7 +25,8 @@ async function getData(urlString) {
             data.currentConditions.datetime
         ];
         const nextDescription = data.description;
-        return {adress, timezone, current, nextDescription};
+        const next5days = getNext(data);
+        return {adress, timezone, current, nextDescription, next5days};
         }catch(error){
             if (error.message.includes('401')){
                 alert('API key invalid');
@@ -39,6 +39,14 @@ async function getData(urlString) {
         }
     }
 
+function getNext(data) {
+    let array = [];
+    for(let i=1;i<=5;i++) {
+        array.push(data.days[i]);
+    }
+    return array;
+}
+
 const submitBtn = document.querySelector('#submitBtn');
 const searchField = document.querySelector('#keyword');
 
@@ -50,6 +58,7 @@ submitBtn.addEventListener('click', (e) => {
 
 async function renderWeatherReport(location) {
     const data = await getWeatherData(location);
+    console.log(data);
     
     const currentAdress = document.querySelector('#adress');
     currentAdress.textContent = data.adress;
@@ -75,6 +84,17 @@ async function renderWeatherReport(location) {
 
     const nextDays = document.querySelector('#nextDescription');
     nextDays.textContent = data.nextDescription;
+
+    const next5days = document.querySelector('nextDaysWeather');
+    const items = document.querySelectorAll('.weather-item');
+    items.forEach((item, index) => {
+        const iconImg = document.querySelector('#icon-'+ (index+1));
+        iconImg.src = 'Icons/' + data.next5days[index].icon + '.svg';
+        const tempItem = document.querySelector('#temp-'+(index+1));
+        const tempItemUnit = document.querySelector('#tempUnit-'+(index+1))
+        tempItem.textContent = data.next5days[index].temp; 
+        tempItemUnit.textContent = ' \u00B0C';
+    })
 
 } 
 
