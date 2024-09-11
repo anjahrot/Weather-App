@@ -85,7 +85,6 @@ async function renderWeatherReport(location) {
     const nextDays = document.querySelector('#nextDescription');
     nextDays.textContent = data.nextDescription;
 
-    const next5days = document.querySelector('nextDaysWeather');
     const items = document.querySelectorAll('.weather-item');
     items.forEach((item, index) => {
         const iconImg = document.querySelector('#icon-'+ (index+1));
@@ -103,6 +102,8 @@ toggleBtn.addEventListener('click', toggleTemp);
 
 const temp = document.querySelector('#temp');
 const tempunit = document.querySelector('#tempUnit');
+const tempItems = document.querySelectorAll('.item-temp');
+const tempItemsUnit = document.querySelectorAll('.item-unit');
 //initially rendered temperature in celsius
 let tempType = 'celsius';
 
@@ -110,12 +111,26 @@ function toggleTemp () {
     let temperature = parseFloat(temp.textContent)
     if(tempType === 'celsius') {
         temp.textContent = tempFromCtoF(temperature);
+        tempItems.forEach((item) => {
+            const temp = parseFloat(item.textContent); 
+            item.textContent = tempFromCtoF(temp);
+        });
         tempunit.textContent = ' \u00B0F';
+        tempItemsUnit.forEach((item => {
+            item.textContent = ' \u00B0F';
+        }))
         tempType = 'fahrenheit';
     }
     else if(tempType === 'fahrenheit') {
         temp.textContent = tempFromFtoC(temperature);
+        tempItems.forEach((item) => {
+            const temp = parseFloat(item.textContent); 
+            item.textContent = tempFromFtoC(temp);
+        });
         tempunit.textContent = ' \u00B0C';
+        tempItemsUnit.forEach((item => {
+            item.textContent = ' \u00B0C';
+        }))
         tempType = 'celsius';
     }
 }

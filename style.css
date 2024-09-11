@@ -28,7 +28,7 @@ img {
     color: darkblue;
     font-size: 56px;
     background-color: rgb(38, 226, 163);
-    padding: 20px;
+    padding: 40px;
 }
 
 /* Search location */
@@ -172,6 +172,11 @@ form {
     align-items: center;
 }
 
+.tempAndUnit {
+    display: flex;
+    gap: 2px;
+}
+
 /* Footer */
 .footer {
     grid-area: footer;
@@ -195,6 +200,5 @@ form {
 }
 
 .footer a {
-    text-decoration: none;
     color: darkblue;
 }
