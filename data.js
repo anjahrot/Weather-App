@@ -58,7 +58,6 @@ submitBtn.addEventListener('click', (e) => {
 
 async function renderWeatherReport(location) {
     const data = await getWeatherData(location);
-    console.log(data);
     
     const currentAdress = document.querySelector('#adress');
     currentAdress.textContent = data.adress;
